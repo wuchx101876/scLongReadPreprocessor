@@ -4,6 +4,27 @@
 
 ---
 
+## Library Structure of Third-Generation Single-Cell Sequencing Reads
+
+This tool is designed to process third-generation single-cell sequencing data with the following read1 structure:
+
+```less
+[adapter] + [Barcode] + [UMI] + [TSO sequence] + [cDNA sequence] + [polyT tail]
+```
+
+- **Barcode**: Cell-identifying sequence tag, length configurable (e.g., 16 bp)
+- **UMI (Unique Molecular Identifier)**: Random sequence to distinguish unique molecules, length configurable (e.g., 10 bp)
+- **TSO (Template Switch Oligo) sequence**: Library preparation specific sequence used to locate the barcode and UMI region
+- **cDNA sequence**: Actual biological read sequence
+- **polyT tail**: Reverse complement of polyA tail, often present at 3'-end; this tool automatically detects and trims polyA/T tails to reduce noise
+
+### Features of processing:
+
+- Precise TSO sequence alignment with user-configurable maximum edit distance
+- Barcode correction based on edit distance or accelerated BK-tree search
+- Extraction of UMI sequences
+- Automatic trimming of polyA/T tails from cDNA sequences (default minimum length: 6 bases)
+
 ## Features
 
 - Supports gzipped FASTQ input (3rd-gen scRNA-seq long reads)
