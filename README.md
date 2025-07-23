@@ -1,6 +1,6 @@
 # scLongReadPreprocessor
 
-**A Python tool for extracting and correcting barcodes and UMIs from third-generation single-cell sequencing data with TSO correction and polyA/T tail trimming.**
+**scLongReadPreprocessor** is a high-performance preprocessing tool specifically designed for third-generation (long-read) single-cell sequencing data. It accurately extracts and corrects cell barcodes (BC) and unique molecular identifiers (UMIs). This tool integrates template switching oligonucleotide (TSO) sequence detection, automatic trimming of polyA/polyT tails, and barcode fuzzy matching and correction based on edit distance or BK-tree algorithms.
 
 ---
 
