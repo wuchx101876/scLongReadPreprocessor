@@ -18,13 +18,6 @@ This tool is designed to process third-generation single-cell sequencing data wi
 - **cDNA sequence**: Actual biological read sequence
 - **polyT tail**: Reverse complement of polyA tail, often present at 3'-end; this tool automatically detects and trims polyA/T tails to reduce noise
 
-### Features of processing:
-
-- Precise TSO sequence alignment with user-configurable maximum edit distance
-- Barcode correction based on edit distance or accelerated BK-tree search
-- Extraction of UMI sequences
-- Automatic trimming of polyA/T tails from cDNA sequences (default minimum length: 6 bases)
-
 ## Features
 
 - Supports gzipped FASTQ input (3rd-gen scRNA-seq long reads)
