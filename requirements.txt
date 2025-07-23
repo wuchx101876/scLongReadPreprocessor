@@ -1,0 +1,3 @@
+edlib>=1.3.10
+editdistance>=0.5.3
+tqdm>=4.65.0
