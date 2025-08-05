@@ -88,3 +88,61 @@ python extract_barcode.py \
 
 
 
+# Long-Read Single-Cell BAM Gene Count Matrix Generator
+
+This tool processes third-generation long-read single-cell sequencing BAM files to generate a gene count matrix by cell barcode. It uses gene annotation in BED format to assign reads to genes, deduplicates UMIs per cell-gene pair, and outputs a cell-by-gene UMI count matrix.
+
+It supports BAM files tagged with cell barcode (`CB`) and UMI (`UB`) information.
+
+## Features
+
+- Streamline single-cell long-read BAM file processing
+- Uses interval trees for fast gene overlap searching
+- Handles multi-gene read assignments
+- Deduplicates UMIs per cell and gene
+- Outputs a tab-separated cell × gene UMI count matrix
+- Displays processing progress for large files
+
+## Dependencies
+
+- Python 3
+- [pysam](https://pysam.readthedocs.io/en/latest/)
+- [intervaltree](https://pypi.org/project/intervaltree/)
+
+## Usage
+
+```bash
+usage: script.py [-h] -i INPUT_BAM -g GENE_BED -o OUTPUT
+
+Process third-generation single-cell BAM to generate gene count matrix
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT_BAM, --input_bam INPUT_BAM
+                        Input BAM file (sorted and indexed)
+  -g GENE_BED, --gene_bed GENE_BED
+                        Gene annotation BED file with columns: chr start end gene_id
+  -o OUTPUT, --output OUTPUT
+                        Output count matrix TSV file
+```
+
+## Example
+
+Suppose you have a sorted and indexed BAM file `sample.bam` and gene annotation BED file `genes.bed`:
+
+```bash
+python3 script.py \
+  -i sample.bam \
+  -g genes.bed \
+  -o count_matrix.tsv
+```
+
+After running, the output TSV `count_matrix.tsv` will have this format:
+
+| Cell\Gene | GeneA | GeneB | GeneC | ...  |
+| --------- | ----- | ----- | ----- | ---- |
+| CELL1     | 10    | 0     | 3     | ...  |
+| CELL2     | 5     | 7     | 1     | ...  |
+| ...       | ...   | ...   | ...   | ...  |
+
+Each entry represents the UMI count for that cell and gene.
